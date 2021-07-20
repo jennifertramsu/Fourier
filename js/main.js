@@ -43,17 +43,19 @@ function plot(context, axes, func, colour, thick) {
     context.lineWidth = thick;
     context.strokeStyle = colour;
 
-    for (var i=iMin; i<=iMax; i++) {
-        xx = dx*i;
-        yy = scale*func(xx/scale);
-        if (i==iMin) {
-            context.moveTo(x0+xx, y0-yy);
-        }
-        else {
-            context.lineTo(x0+xx, y0-yy);
+    function frame() {
+        for (var i=iMin; i<=iMax; i++) {
+            xx = dx*i;
+            yy = scale*func(xx/scale);
+            if (i==iMin) {
+                context.moveTo(x0+xx, y0-yy);
+            }
+            else {
+                context.lineTo(x0+xx, y0-yy);
+                context.stroke();  
+            }
         }
     }
-    context.stroke();    
 }
 
 function showAxes(context, axes) {
